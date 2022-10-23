@@ -17,46 +17,86 @@
             <button type="button" class="calc_botao_fun button_animation">mrc</button>
             <button type="button" class="calc_botao_fun button_animation">m-</button>
             <button type="button" class="calc_botao_fun button_animation">m+</button>
-            <button type="button" class="calc_botao_op button_animation">÷</button>
+            <button type="button" class="calc_botao_op button_animation" onclick="insert('รท')">รท</button>
         </div>
         <div class="calc_linhas">
             <button type="button" class="calc_botao button_animation" onclick="insert('7')">7</button>
             <button type="button" class="calc_botao button_animation" onclick="insert('8')">8</button>
             <button type="button" class="calc_botao button_animation" onclick="insert('9')">9</button>
-            <button type="button" class="calc_botao_op button_animation">x</button>
+            <button type="button" class="calc_botao_op button_animation" onclick="insert('x')">x</button>
         </div>
         <div class="calc_linhas">
             <button type="button" class="calc_botao button_animation" onclick="insert('4')">4</button>
             <button type="button" class="calc_botao button_animation" onclick="insert('5')">5</button>
             <button type="button" class="calc_botao button_animation" onclick="insert('6')">6</button>
-            <button type="button" class="calc_botao_op button_animation">-</button>
+            <button type="button" class="calc_botao_op button_animation" onclick="insert('-')">-</button>
         </div>
         <div class="calc_linhas">
             <button type="button" class="calc_botao button_animation" onclick="insert('1')">1</button>
             <button type="button" class="calc_botao button_animation" onclick="insert('2')">2</button>
             <button type="button" class="calc_botao button_animation" onclick="insert('3')">3</button>
-            <button type="button" class="calc_botao_op button_animation">+</button>
+            <button type="button" class="calc_botao_op button_animation" onclick="insert('+')">+</button>
         </div>
         <div class="calc_linhas">
             <button type="button" class="calc_botao button_animation" onclick="insert('0')">0</button>
-            <button type="button" class="calc_botao button_animation">.</button>
+            <button type="button" class="calc_botao button_animation" onclick="insert(',')">.</button>
             <button type="button" class="calc_botao button_animation" onclick="clean()">C</button>
-            <button type="button" class="calc_botao_res button_animation">=</button>
+            <button type="button" class="calc_botao_res button_animation" onclick="result()">=</button>
         </div>
         <script>            
-            var listaNumber = []
             function insert(num){
-                listaNumber.push(num)
-                var stringlNumber = listaNumber.toString()
-                var numero = document.getElementsByClassName('visor_input')[0].value = stringlNumber.replace(/[^0-9]/g, '');                
-                console.log(listaNumber)
-                
+                const visor =  document.querySelector("#res");
+                var numero = document.getElementsByClassName('visor_input')[0].value = visor.value + num;
             }
             function clean(){
                 listaNumber = []
                 document.getElementsByClassName('visor_input')[0].value = "";
             }
 
+            const result = () => {
+                const visor =  document.querySelector("#res");
+                const somar =  visor.value.indexOf("+");
+                const subtrair =  visor.value.indexOf("-");
+                const multiplicar =  visor.value.indexOf("x");
+                const dividir =  visor.value.indexOf("รท");
+
+                if(somar != -1){
+                    const numbers1 = visor.value.substring(0, somar);
+                    const numbers2 = visor.value.substring(parseInt(somar)+1, visor.value.length);
+                    if(numbers2.length){
+                        const result = parseInt(numbers1) + parseInt(numbers2)
+                        visor.value = result;
+                    }
+                }
+
+                if(subtrair != -1){
+                    const numbers1 = visor.value.substring(0, subtrair);
+                    const numbers2 = visor.value.substring(parseInt(subtrair)+1, visor.value.length);
+                    if(numbers2.length){
+                        const result = parseInt(numbers1) - parseInt(numbers2)
+                        visor.value = result;
+                    }
+                }
+
+                if(multiplicar != -1){
+                    const numbers1 = visor.value.substring(0, multiplicar);
+                    const numbers2 = visor.value.substring(parseInt(multiplicar)+1, visor.value.length);
+                    if(numbers2.length){
+                        const result = parseInt(numbers1) * parseInt(numbers2)
+                        visor.value = result;
+                    }
+                }
+
+                if(dividir != -1){
+                    const numbers1 = visor.value.substring(0, dividir);
+                    const numbers2 = visor.value.substring(parseInt(dividir)+1, visor.value.length);
+                    if(numbers2.length){
+                        const result = parseInt(numbers1) / parseInt(numbers2)
+                        visor.value = result;
+                    }
+                }
+                
+            }
         </script>
 
 </body>
