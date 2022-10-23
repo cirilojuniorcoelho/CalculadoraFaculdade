@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Calculadora</title>
+
+</head>
+<body>
+    <form id="calculadora">
+        <div class="visor">
+           <input type="text" name="res" id="res" value="" class="visor_input">
+        </div>
+        <div class="calc_linhas">
+            <button type="button" class="calc_botao_fun button_animation">mrc</button>
+            <button type="button" class="calc_botao_fun button_animation">m-</button>
+            <button type="button" class="calc_botao_fun button_animation">m+</button>
+            <button type="button" class="calc_botao_op button_animation">÷</button>
+        </div>
+        <div class="calc_linhas">
+            <button type="button" class="calc_botao button_animation" onclick="insert('7')">7</button>
+            <button type="button" class="calc_botao button_animation" onclick="insert('8')">8</button>
+            <button type="button" class="calc_botao button_animation" onclick="insert('9')">9</button>
+            <button type="button" class="calc_botao_op button_animation">x</button>
+        </div>
+        <div class="calc_linhas">
+            <button type="button" class="calc_botao button_animation" onclick="insert('4')">4</button>
+            <button type="button" class="calc_botao button_animation" onclick="insert('5')">5</button>
+            <button type="button" class="calc_botao button_animation" onclick="insert('6')">6</button>
+            <button type="button" class="calc_botao_op button_animation">-</button>
+        </div>
+        <div class="calc_linhas">
+            <button type="button" class="calc_botao button_animation" onclick="insert('1')">1</button>
+            <button type="button" class="calc_botao button_animation" onclick="insert('2')">2</button>
+            <button type="button" class="calc_botao button_animation" onclick="insert('3')">3</button>
+            <button type="button" class="calc_botao_op button_animation">+</button>
+        </div>
+        <div class="calc_linhas">
+            <button type="button" class="calc_botao button_animation" onclick="insert('0')">0</button>
+            <button type="button" class="calc_botao button_animation">.</button>
+            <button type="button" class="calc_botao button_animation" onclick="clean()">C</button>
+            <button type="button" class="calc_botao_res button_animation">=</button>
+        </div>
+        <script>            
+            var listaNumber = []
+            function insert(num){
+                listaNumber.push(num)
+                var stringlNumber = listaNumber.toString()
+                var numero = document.getElementsByClassName('visor_input')[0].value = stringlNumber.replace(/[^0-9]/g, '');                
+                console.log(listaNumber)
+                
+            }
+            function clean(){
+                listaNumber = []
+                document.getElementsByClassName('visor_input')[0].value = "";
+            }
+
+        </script>
+
+</body>
+</html>
